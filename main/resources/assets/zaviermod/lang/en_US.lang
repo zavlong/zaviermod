@@ -8,5 +8,6 @@ item.zaviermod_obspickaxe.name=Obsidian Pickaxe
 item.zaviermod_obsaxe.name=Obsidian Axe
 item.zaviermod_obssword.name=Obsidian Sword
 item.zaviermod_obsspade.name=Obsidian Spade
-tile.zaviermod_rubyore.name=Ruby Ore
+tile.zaviermod_rubyore.ore.name=Ruby Ore
+tile.zaviermod_rubyore.block.name=Ruby Block
 tile.zaviermod_rubyblock.name=Block of Ruby

@@ -20,7 +20,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ZavierMod
 {
     public static final String MODID = "zaviermod";
-    public static final String VERSION = "0.1.6";
+    public static final String VERSION = "0.1.8";
     
     //Item declarations
     
@@ -47,7 +47,7 @@ public class ZavierMod
     public static Block rubyore;
     // Ruby Block
     public static Block rubyblock;
-    
+    ZavierEventHandler handler = new ZavierEventHandler();
     //Tool material declarations
     // Ruby material (for tools)
     ToolMaterial rubytool = EnumHelper.addToolMaterial("rubytool", 3, 2500, 10, 3, 9);
@@ -98,9 +98,10 @@ public class ZavierMod
     	GameRegistry.registerItem(obsaxe, "ObsAxe");
     	GameRegistry.registerItem(obssword, "ObsSword");
     	GameRegistry.registerItem(obsspade, "ObsSpade");
-    	GameRegistry.registerBlock(rubyore, "RubyOre");
+    	GameRegistry.registerBlock(rubyore, ItemRubyOre.class, "RubyOre");
     	
     	GameRegistry.registerBlock(rubyblock, "RubyBlock");
+    	GameRegistry.registerWorldGenerator(handler, 0);
     	
     
     }
