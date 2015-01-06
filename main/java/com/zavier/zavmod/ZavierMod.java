@@ -20,7 +20,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ZavierMod
 {
     public static final String MODID = "zaviermod";
-    public static final String VERSION = "0.1.8";
+    public static final String VERSION = "0.2.0";
     
     //Item declarations
     
@@ -28,6 +28,7 @@ public class ZavierMod
     public static Item confeather;
     // Ruby
     public static Item ruby;
+    public static Item obsdust;
     // Ruby pickaxe
     public static Item rubypickaxe;
     // Ruby axe
@@ -41,19 +42,25 @@ public class ZavierMod
     public static Item obsaxe;
     public static Item obssword;
     public static Item obsspade;
+    //Emerald tools
+    public static Item empickaxe;
+    public static Item emspade;
+    public static Item emaxe;
+    public static Item emsword;
 
     //Block declarations
     // Ruby ore
     public static Block rubyore;
     // Ruby Block
     public static Block rubyblock;
+    public static Block comobs;
     ZavierEventHandler handler = new ZavierEventHandler();
     //Tool material declarations
     // Ruby material (for tools)
     ToolMaterial rubytool = EnumHelper.addToolMaterial("rubytool", 3, 2500, 10, 3, 9);
     // Obsidian material (for tools)
     ToolMaterial obstool = EnumHelper.addToolMaterial("obstool", 3, 5000, 12, 7, 7);
-    
+    ToolMaterial emtool = EnumHelper.addToolMaterial("emtool", 3, 3000, 10, 4, 10);
     @EventHandler
     public void preInit(FMLPreInitializationEvent event){
     	
@@ -62,6 +69,7 @@ public class ZavierMod
     	confeather = new ItemConfeather();
     	// Ruby
     	ruby = new ItemRuby();
+    	obsdust = new ItemObsDust();
     	// Ruby pickaxe
     	
     	rubypickaxe = new ItemRubyPickaxe(rubytool, "rubypickaxe");
@@ -75,16 +83,20 @@ public class ZavierMod
     	obsaxe = new ItemObsAxe(obstool, "obsaxe");
     	obssword = new ItemObsSword(obstool, "obssword");
     	obsspade = new ItemObsSpade(obstool, "obsspade");
-    
+    	empickaxe = new ItemEmPickaxe(emtool, "empickaxe");
+    	emspade = new ItemEmSpade(emtool, "emspade");
+    	emaxe = new ItemEmAxe(emtool, "emaxe");
+    	emsword = new ItemEmSword(emtool, "emsword");
     	rubyore = new BlockRubyOre();
 
     	rubyblock = new BlockRubyBlock();
-    	
+    	comobs = new BlockComObs();
     	// Register items
 
     	GameRegistry.registerItem(confeather, "ConureFeather");
 
     	GameRegistry.registerItem(ruby, "Ruby");
+    	GameRegistry.registerItem(obsdust, "ObsDust");
     	
     	GameRegistry.registerItem(rubypickaxe, "RubyPick");
     	
@@ -98,9 +110,14 @@ public class ZavierMod
     	GameRegistry.registerItem(obsaxe, "ObsAxe");
     	GameRegistry.registerItem(obssword, "ObsSword");
     	GameRegistry.registerItem(obsspade, "ObsSpade");
+    	GameRegistry.registerItem(empickaxe, "EmeraldPick");
+    	GameRegistry.registerItem(emspade, "EmeraldSpade");
+    	GameRegistry.registerItem(emaxe, "EmeraldAxe");
+    	GameRegistry.registerItem(emsword, "EmeraldSword");
     	GameRegistry.registerBlock(rubyore, ItemRubyOre.class, "RubyOre");
     	
     	GameRegistry.registerBlock(rubyblock, "RubyBlock");
+    	GameRegistry.registerBlock(comobs, "ComObs");
     	GameRegistry.registerWorldGenerator(handler, 0);
     	
     
@@ -142,6 +159,12 @@ public class ZavierMod
 				" Y ",
 				'X', Blocks.obsidian, 'Y', Items.stick
 				);
+		GameRegistry.addRecipe(new ItemStack(ZavierMod.comobs),
+				"XXX",
+				"XXX",
+				"XXX",
+				'X', Blocks.obsidian
+				);
 		//Ruby tool recipes
 		GameRegistry.addRecipe(new ItemStack(ZavierMod.rubypickaxe),
 				"XXX",
@@ -173,6 +196,30 @@ public class ZavierMod
 				"XXX",
 				'X', ZavierMod.ruby
 				);
+		GameRegistry.addRecipe(new ItemStack(ZavierMod.empickaxe),
+				"XXX",
+				" Y ",
+				" Y ",
+				'X', Items.emerald, 'Y', Items.stick
+				);
+		GameRegistry.addRecipe(new ItemStack(ZavierMod.emaxe),
+				"XX ",
+				"XY ",
+				" Y ",
+				'X', Items.emerald, 'Y', Items.stick
+				);
+		GameRegistry.addRecipe(new ItemStack(ZavierMod.emsword),
+				" X ",
+				" X ",
+				" Y ",
+				'X', Items.emerald, 'Y', Items.stick
+				);
+		GameRegistry.addRecipe(new ItemStack(ZavierMod.emspade),
+				" X ",
+				" Y ",
+				" Y ",
+				'X', Items.emerald, 'Y', Items.stick
+				);
 		// Crafting: Turns 1 blaze powder & a stick into 12 torches
 		GameRegistry.addRecipe(new ItemStack(Blocks.torch, 12),
 				" X",
@@ -203,6 +250,9 @@ public class ZavierMod
 		// Turns a piece of glowstone dust and a lava bucket into 1 plaze powder
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.blaze_powder),
 				Items.glowstone_dust, Items.lava_bucket
+				);
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.obsidian, 9),
+				ZavierMod.comobs
 				);
 		//Ore recipes
 		GameRegistry.addRecipe(new ItemStack(Blocks.diamond_ore, 5), 
