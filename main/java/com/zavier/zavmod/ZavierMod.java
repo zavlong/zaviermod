@@ -20,7 +20,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ZavierMod
 {
     public static final String MODID = "zaviermod";
-    public static final String VERSION = "0.2.0";
+    public static final String VERSION = "0.2.2";
     
     //Item declarations
     
@@ -29,6 +29,7 @@ public class ZavierMod
     // Ruby
     public static Item ruby;
     public static Item obsdust;
+    public static Item obsbrick;
     // Ruby pickaxe
     public static Item rubypickaxe;
     // Ruby axe
@@ -54,6 +55,10 @@ public class ZavierMod
     // Ruby Block
     public static Block rubyblock;
     public static Block comobs;
+    public static Block obsbricks;
+    public static Block obspillar;
+    public static Block obssmooth;
+    public static Block obschisel;
     ZavierEventHandler handler = new ZavierEventHandler();
     //Tool material declarations
     // Ruby material (for tools)
@@ -70,6 +75,7 @@ public class ZavierMod
     	// Ruby
     	ruby = new ItemRuby();
     	obsdust = new ItemObsDust();
+    	obsbrick = new ItemObsBrick();
     	// Ruby pickaxe
     	
     	rubypickaxe = new ItemRubyPickaxe(rubytool, "rubypickaxe");
@@ -91,13 +97,17 @@ public class ZavierMod
 
     	rubyblock = new BlockRubyBlock();
     	comobs = new BlockComObs();
+    	obsbricks = new BlockObsBricks();
+    	obspillar = new BlockObsPillar();
+    	obssmooth = new BlockObsSmooth();
+    	obschisel = new BlockObsChisel();
     	// Register items
 
     	GameRegistry.registerItem(confeather, "ConureFeather");
 
     	GameRegistry.registerItem(ruby, "Ruby");
     	GameRegistry.registerItem(obsdust, "ObsDust");
-    	
+    	GameRegistry.registerItem(obsbrick, "ObsBrick");
     	GameRegistry.registerItem(rubypickaxe, "RubyPick");
     	
     	GameRegistry.registerItem(rubyaxe, "RubyAxe");
@@ -118,6 +128,10 @@ public class ZavierMod
     	
     	GameRegistry.registerBlock(rubyblock, "RubyBlock");
     	GameRegistry.registerBlock(comobs, "ComObs");
+    	GameRegistry.registerBlock(obsbricks, "ObsBricks");
+    	GameRegistry.registerBlock(obspillar, "ObsPillar");
+    	GameRegistry.registerBlock(obssmooth, "ObsSmooth");
+    	GameRegistry.registerBlock(obschisel, "ObsChisel");
     	GameRegistry.registerWorldGenerator(handler, 0);
     	
     
@@ -226,6 +240,16 @@ public class ZavierMod
 				" Y",
 				'X', Items.blaze_powder, 'Y', Items.stick
 				);
+		GameRegistry.addRecipe(new ItemStack(ZavierMod.obsbricks),
+				"XX",
+				"XX",
+				'X', ZavierMod.obsbrick
+				);
+		GameRegistry.addRecipe(new ItemStack(ZavierMod.obspillar, 2),
+				"X",
+				"X",
+				'X', ZavierMod.obsbricks
+				);
 		// Crafting: Turns 1 glowstone dust & a stick into 6 torches
 		GameRegistry.addRecipe(new ItemStack(Blocks.torch, 6),
 				" X",
@@ -311,6 +335,8 @@ public class ZavierMod
 		//Smelting recipes	
 		// Smelting: Turns a water bucket into an empty bucket
 		GameRegistry.addSmelting(Items.water_bucket, new ItemStack(Items.bucket), 0.1F);
+		GameRegistry.addSmelting(Blocks.obsidian, new ItemStack(ZavierMod.obsdust), 1F);
+		GameRegistry.addSmelting(ZavierMod.obsdust, new ItemStack(ZavierMod.obsbrick), 0.1F);
 		GameRegistry.addSmelting(ZavierMod.rubyore, new ItemStack(ZavierMod.ruby), 1F);
 		// Turns a block of ice into a bucket of water
 		GameRegistry.addSmelting(Blocks.ice, new ItemStack(Items.water_bucket), 0.5F);

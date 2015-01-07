@@ -1,6 +1,7 @@
 item.zaviermod_confeather.name=Conure Feather
 item.zaviermod_ruby.name=Ruby
 item.zaviermod_obsdust.name=Obsidian Dust
+item.zaviermod_obsbrick.name=Obsidian Brick
 item.zaviermod_rubypickaxe.name=Ruby Pickaxe
 item.zaviermod_rubyaxe.name=Ruby Axe
 item.zaviermod_rubysword.name=Ruby Sword
@@ -17,3 +18,7 @@ tile.zaviermod_rubyore.ore.name=Ruby Ore
 tile.zaviermod_rubyore.block.name=Ruby Block
 tile.zaviermod_rubyblock.name=Block of Ruby
 tile.zaviermod_comobs.name=Compressed Obsidian
+tile.zaviermod_obsbricks.name=Obsidian Bricks
+tile.zaviermod_obspillar.name=Pillar Obsidian
+tile.zaviermod_obssmooth.name=Smooth Obsidian
+tile.zaviermod_obschisel.name=Chiseled Obsidian
