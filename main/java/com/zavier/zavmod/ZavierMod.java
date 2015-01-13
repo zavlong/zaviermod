@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import cpw.mods.fml.common.Mod;
@@ -20,7 +21,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ZavierMod
 {
     public static final String MODID = "zaviermod";
-    public static final String VERSION = "0.2.2";
+    public static final String VERSION = "0.2.4";
     
     //Item declarations
     
@@ -48,7 +49,15 @@ public class ZavierMod
     public static Item emspade;
     public static Item emaxe;
     public static Item emsword;
-
+    //armor
+    public static Item rubyhelmet;
+    public static Item rubychest;
+    public static Item rubyleggings;
+    public static Item rubyboots;
+    public static Item emhelmet;
+    public static Item emchest;
+    public static Item emleggings;
+    public static Item emboots;
     //Block declarations
     // Ruby ore
     public static Block rubyore;
@@ -66,6 +75,9 @@ public class ZavierMod
     // Obsidian material (for tools)
     ToolMaterial obstool = EnumHelper.addToolMaterial("obstool", 3, 5000, 12, 7, 7);
     ToolMaterial emtool = EnumHelper.addToolMaterial("emtool", 3, 3000, 10, 4, 10);
+    //Armor material
+    ArmorMaterial rubyarmor = EnumHelper.addArmorMaterial("rubyarmor", 20, new int[] { 3, 7, 6, 3}, 9);
+    ArmorMaterial emarmor = EnumHelper.addArmorMaterial("emarmor", 20, new int[] { 4, 8, 7, 4}, 10);
     @EventHandler
     public void preInit(FMLPreInitializationEvent event){
     	
@@ -93,6 +105,14 @@ public class ZavierMod
     	emspade = new ItemEmSpade(emtool, "emspade");
     	emaxe = new ItemEmAxe(emtool, "emaxe");
     	emsword = new ItemEmSword(emtool, "emsword");
+    	rubyhelmet = new ItemRubyArmor(rubyarmor, 0, "rubyhelmet");
+    	rubychest = new ItemRubyArmor(rubyarmor, 1, "rubychest");
+    	rubyleggings = new ItemRubyArmor(rubyarmor, 2, "rubyleggings");
+    	rubyboots = new ItemRubyArmor(rubyarmor, 3, "rubyboots");
+    	emhelmet = new ItemEmArmor(emarmor, 0, "emhelmet");
+    	emchest = new ItemEmArmor(emarmor, 1, "emchest");
+    	emleggings = new ItemEmArmor(emarmor, 2, "emleggings");
+    	emboots = new ItemEmArmor(emarmor, 3, "emboots");
     	rubyore = new BlockRubyOre();
 
     	rubyblock = new BlockRubyBlock();
@@ -124,6 +144,15 @@ public class ZavierMod
     	GameRegistry.registerItem(emspade, "EmeraldSpade");
     	GameRegistry.registerItem(emaxe, "EmeraldAxe");
     	GameRegistry.registerItem(emsword, "EmeraldSword");
+    	GameRegistry.registerItem(rubyhelmet, "RubyHelmet");
+    	GameRegistry.registerItem(rubychest, "RubyChest");
+    	GameRegistry.registerItem(rubyleggings, "RubyLeggings");
+    	GameRegistry.registerItem(rubyboots, "RubyBoots");
+    	GameRegistry.registerItem(emhelmet, "EmHelmet");
+    	GameRegistry.registerItem(emchest, "EmChest");
+    	GameRegistry.registerItem(emleggings, "EmLeggings");
+    	GameRegistry.registerItem(emboots, "EmBoots");
+    	//block registry
     	GameRegistry.registerBlock(rubyore, ItemRubyOre.class, "RubyOre");
     	
     	GameRegistry.registerBlock(rubyblock, "RubyBlock");
@@ -249,6 +278,11 @@ public class ZavierMod
 				"X",
 				"X",
 				'X', ZavierMod.obsbricks
+				);
+		GameRegistry.addRecipe(new ItemStack(ZavierMod.obssmooth, 4),
+				"XX",
+				"XX",
+				'X', Blocks.obsidian
 				);
 		// Crafting: Turns 1 glowstone dust & a stick into 6 torches
 		GameRegistry.addRecipe(new ItemStack(Blocks.torch, 6),
